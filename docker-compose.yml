@@ -1,0 +1,18 @@
+services:
+  api:
+    # Constrói a imagem a partir do Dockerfile no diretório atual (.)
+    build: .
+    # Mapeia a porta 8000 do host para a porta 8000 do container
+    container_name: imersao-devops
+    ports:
+      - "8000:8000"
+    # Monta o diretório atual do host no diretório /app do container
+    # Isso permite:
+    # 1. Live-reloading: Alterações no código local são refletidas no container.
+    # 2. Persistência de dados: O banco de dados 'escola.db' será criado no seu diretório local.
+    volumes:
+      - .:/app
+
+# O comando para iniciar a aplicação já está definido no Dockerfile:
+# CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
